@@ -50,7 +50,7 @@ export const PageLayout: FC<PropsWithChildren<{ className?: string }>> = ({
       <header className="z-20 border-b-2 border-tertiary-3">
         <div className="container mx-auto flex h-full w-full items-center justify-between gap-4">
           <Link href="/">
-            <a className="flex items-center gap-4 px-8 lg:px-0">
+            <a className="flex items-center gap-4 px-8 hover:opacity-60 lg:px-0">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 1502 1502"
@@ -109,7 +109,7 @@ export const PageLayout: FC<PropsWithChildren<{ className?: string }>> = ({
                 </div>
               )}
             </Menu.Button>
-            <Menu.Items className="absolute right-0 top-full w-screen bg-background">
+            <Menu.Items className="absolute right-0 top-full w-screen bg-background shadow-lg">
               <Menu.Item>
                 <NavLink href="/tech">
                   <FontAwesomeIcon fixedWidth icon={faCode} size="sm" />

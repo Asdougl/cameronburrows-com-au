@@ -2,6 +2,7 @@ import { faReact } from '@fortawesome/free-brands-svg-icons'
 import { faBarcode, faPlane } from '@fortawesome/pro-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classNames from 'classnames'
+import { useEffect, useMemo, useState } from 'react'
 
 const AIRPORTS = [
   // europe
@@ -37,7 +38,26 @@ const AIRPORTS = [
 ]
 
 export const BoardingPass = ({ className }: { className?: string }) => {
-  const airport = AIRPORTS[Math.floor(Math.random() * AIRPORTS.length)]
+  const [airportIndex, setAirportIndex] = useState(0)
+  const [transitioning, setTransitioning] = useState(false)
+
+  useEffect(() => {
+    let timeout: ReturnType<typeof setTimeout> | null = null
+    const interval = setInterval(() => {
+      setTransitioning(true)
+      timeout = setTimeout(() => {
+        const nextIndex =
+          airportIndex + 1 > AIRPORTS.length - 1 ? 0 : airportIndex + 1
+        setAirportIndex(nextIndex)
+        setTransitioning(false)
+      }, 150)
+    }, 1000)
+
+    return () => {
+      clearInterval(interval)
+      if (timeout) clearTimeout(timeout)
+    }
+  })
 
   return (
     <div
@@ -66,10 +86,21 @@ export const BoardingPass = ({ className }: { className?: string }) => {
         <div className="flex flex-col font-medium">
           <div className="text-sm lg:text-lg">BURROWS / CAMERON</div>
           <div className="flex items-center gap-2">
-            <span className="">SYD</span>
+            <span className="h-6 w-9 text-center">SYD</span>
             <FontAwesomeIcon icon={faPlane} />
-            <span className="">{airport}</span>
+            <span className="h-6 w-9 overflow-hidden">
+              <div
+                className={classNames(
+                  'flex flex-col justify-center',
+                  transitioning ? 'transition-transform' : '-translate-y-1/2'
+                )}
+              >
+                <div>{AIRPORTS[airportIndex + 1]}</div>
+                <div>{AIRPORTS[airportIndex]}</div>
+              </div>
+            </span>
           </div>
+          <div className="px-1 font-mono text-sm font-normal">FEF-62</div>
         </div>
       </div>
       {/* bottom right */}
@@ -79,7 +110,21 @@ export const BoardingPass = ({ className }: { className?: string }) => {
             <span>BURROWS /</span>
             <span>CAMERON</span>
           </div>
-          <div className="text-xs">SYD to LHR</div>
+          <div className="flex gap-1 text-xs">
+            <div className="h-4 w-7 text-center">SYD</div>
+            <div>to</div>
+            <div className="h-4 w-7 overflow-hidden">
+              <div
+                className={classNames(
+                  'flex w-full flex-col justify-center',
+                  transitioning ? 'transition-transform' : '-translate-y-1/2'
+                )}
+              >
+                <div>{AIRPORTS[airportIndex + 1]}</div>
+                <div>{AIRPORTS[airportIndex]}</div>
+              </div>
+            </div>
+          </div>
           <div className="flex gap-px pr-2">
             <FontAwesomeIcon icon={faBarcode} size="lg" />
             <FontAwesomeIcon icon={faBarcode} size="lg" />

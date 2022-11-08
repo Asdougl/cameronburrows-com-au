@@ -5,6 +5,7 @@ import { faWarning } from '@fortawesome/pro-regular-svg-icons'
 import type { Article } from '../types/article'
 import { timeSince } from '../util/helpers'
 import { Markdown } from './Markdown'
+import { CategoryBadge } from './CategoryBadge'
 
 dayjs.extend(advancedFormats)
 
@@ -21,23 +22,15 @@ export const Post = ({ article }: PostProps) => {
   return (
     <div className="py-4">
       <div className="container mx-auto flex flex-col gap-4 px-4 pb-8 pt-4 lg:px-0 lg:pt-10 lg:pb-16">
-        {outdated && (
-          <div className="flex pb-8">
-            <div className="flex items-center gap-4 rounded-xl bg-gradient-to-r from-warning-1 to-accent p-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-warning-2">
-                <FontAwesomeIcon icon={faWarning} size="lg" />
-              </div>
-              <div className="flex flex-col pr-8">
-                <span className="font-medium">
-                  This article may be outdated
-                </span>
-                <span className="text-sm">
-                  Check the relative package versions provided
-                </span>
-              </div>
+        <div className="flex flex-col items-start gap-4 lg:flex-row">
+          <CategoryBadge category={article.category} />
+          {outdated && (
+            <div className="rounded-full bg-warning-2 px-4 py-1 text-xs font-semibold uppercase tracking-widest text-background">
+              <FontAwesomeIcon icon={faWarning} className="mr-2" />
+              This article may be outdated
             </div>
-          </div>
-        )}
+          )}
+        </div>
         <h1 className="text-3xl font-black lg:text-6xl">
           {article.metadata.title}
         </h1>
