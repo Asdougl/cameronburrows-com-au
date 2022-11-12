@@ -2,14 +2,14 @@ import type { NextPage } from 'next'
 import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import debounce from 'lodash/debounce'
-import Link from 'next/link'
 import { faSadCry, faSpinner } from '@fortawesome/pro-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import dayjs from 'dayjs'
 import advancedFormat from 'dayjs/plugin/advancedFormat'
+import Head from 'next/head'
 import { PageLayout } from '../layout/PageLayout'
 import type { ApiSearchResult } from '../types/api/search'
-import { errorToString, hasProperty, timeSince } from '../util/helpers'
+import { errorToString, hasProperty } from '../util/helpers'
 import { PostPreview } from '../components/PostPreview'
 
 dayjs.extend(advancedFormat)
@@ -34,6 +34,9 @@ const Search: NextPage = () => {
 
   return (
     <PageLayout>
+      <Head>
+        <title>Search | Cameron Burrows</title>
+      </Head>
       <div className="container mx-auto flex flex-col px-4 py-8 lg:px-0">
         <h1 className="mb-2 font-display text-4xl font-black">Search</h1>
         <input
@@ -55,14 +58,11 @@ const Search: NextPage = () => {
             // show search results
             <ul className="flex flex-col gap-4 py-8">
               {data.length ? (
-                data.map((result) => {
-                  const published = dayjs(result.metadata.date)
-                  return (
-                    <li key={result.slug}>
-                      <PostPreview post={result} />
-                    </li>
-                  )
-                })
+                data.map((result) => (
+                  <li key={result.slug}>
+                    <PostPreview post={result} />
+                  </li>
+                ))
               ) : search ? (
                 <li className="flex flex-col items-center gap-4">
                   <span>

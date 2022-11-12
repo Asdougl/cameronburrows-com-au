@@ -30,7 +30,7 @@ export const PostPreview = ({ post, mostRecent }: PostPreviewProps) => {
           {timeSince(published.toDate())}
         </div>
         {mostRecent && (
-          <div className="absolute -top-3 right-4 rounded-full bg-warning-2 px-2 py-1 text-xs font-semibold uppercase tracking-widest text-background">
+          <div className="absolute -top-3 right-4 rounded-full bg-warning-2 px-2 py-1 text-xs font-semibold uppercase tracking-widest text-background shadow-lg">
             <FontAwesomeIcon icon={faStar} /> Latest
           </div>
         )}

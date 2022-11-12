@@ -1,17 +1,16 @@
 ---
-title: 'Todo List'
+title: 'Blog Todo List'
 date: '2022-10-29'
-author:
-  name: 'Cameron Burrows'
-  twitter: '_asdougl'
-  github: 'asdougl'
-image: 'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3872&q=80'
-summary: 'My Test Blog post -- go away'
+summary: 'A little roadmap of what I need to add to my blog'
 ---
 
-# This is my todo list
+## Todo
 
-go away
-
-- [ ] Make it look good
-- [x] Show MD file
+1. Add a little "about me" blurb to the bottom of each blog post
+2. Add a all blog posts page, maybe make the category pages feel like a filtered list?
+3. More intuitive experience for the back buttons on the blog pages
+4. Add blog preview images
+5. Reduce code duplication across blog pages
+6. Make a nice blogpost REST API
+7. Better (faster) search functionality
+8. 3 related blog posts below post

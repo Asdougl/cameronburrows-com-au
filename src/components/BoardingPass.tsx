@@ -2,7 +2,7 @@ import { faReact } from '@fortawesome/free-brands-svg-icons'
 import { faBarcode, faPlane } from '@fortawesome/pro-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classNames from 'classnames'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const AIRPORTS = [
   // europe

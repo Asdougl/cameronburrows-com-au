@@ -1,7 +1,5 @@
 import type { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
-import Link from 'next/link'
-import dayjs from 'dayjs'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faNewspaper } from '@fortawesome/pro-regular-svg-icons'
 import { PageLayout } from '../layout/PageLayout'
