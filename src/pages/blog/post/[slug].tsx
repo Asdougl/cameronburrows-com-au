@@ -21,14 +21,8 @@ type PageParams = {
 export const getStaticPaths: GetStaticPaths<PageParams> = async () => {
   const files = await getArticleFiles()
 
-  let filenames: { params: PageParams }[] = []
-
-  for (const { filename } of files) {
-    if (filename) filenames = [...filenames, { params: { slug: filename } }]
-  }
-
   return {
-    paths: filenames,
+    paths: files.map((file) => ({ params: { slug: file.filename } })),
     fallback: true,
   }
 }
@@ -50,7 +44,7 @@ export const getStaticProps: GetStaticProps<PageProps, PageParams> = async ({
   }
 }
 
-const TechArticlePage: NextPage<PageProps> = ({ article, slug }) => {
+const TechArticlePage: NextPage<PageProps> = ({ article }) => {
   return (
     <PageLayout>
       <Head>

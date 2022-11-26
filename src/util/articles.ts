@@ -103,28 +103,36 @@ const PAGE_SIZE = 10 // number of results per page
 export const getArticles = async (params?: GetArticleParams) => {
   const { category, page = 0 } = params || {}
 
-  // get all articles
-  const articleFiles = await getArticleFiles(category)
+  try {
+    // get all articles
+    const articleFiles = await getArticleFiles(category)
 
-  // read all articles in articleFiles
-  const articles = await Promise.all(articleFiles.map(readArticle))
+    // read all articles in articleFiles
+    const articles = await Promise.all(articleFiles.map(readArticle))
 
-  // filter out articles that failed to parse
-  const parsedArticles = compact(articles)
+    // filter out articles that failed to parse
+    const parsedArticles = compact(articles)
 
-  // sort articles by date
-  parsedArticles.sort(articleSort)
+    // sort articles by date
+    parsedArticles.sort(articleSort)
 
-  // paginate articles
-  const paginatedArticles = parsedArticles.slice(
-    page * PAGE_SIZE,
-    (page + 1) * PAGE_SIZE
-  )
+    // paginate articles
+    const paginatedArticles = parsedArticles.slice(
+      page * PAGE_SIZE,
+      (page + 1) * PAGE_SIZE
+    )
 
-  // return all articles
-  return {
-    total: parsedArticles.length,
-    articles: paginatedArticles,
+    // return all articles
+    return {
+      total: parsedArticles.length,
+      articles: paginatedArticles,
+    }
+  } catch (error) {
+    console.error(error)
+    return {
+      total: 0,
+      articles: [],
+    }
   }
 }
 

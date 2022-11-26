@@ -25,7 +25,7 @@ export const Post = ({ article }: PostProps) => {
       <div className="mx-auto flex max-w-prose flex-col gap-4 px-4 pb-8 pt-4 lg:container lg:px-0 lg:pt-10 lg:pb-16">
         <div className="flex flex-col items-start gap-4 lg:flex-row">
           <Link href={`/blog/${article.category}`}>
-            <a className="group flex">
+            <a className="group flex items-center">
               <div className="w-0">
                 <FontAwesomeIcon
                   icon={faArrowLeft}

@@ -23,7 +23,9 @@ type PageProps = {
 
 export const getStaticPaths: GetStaticPaths<PageParams> = async () => {
   return {
-    paths: Category.options.map((category) => ({ params: { category } })),
+    paths: Category.options.map((category) => ({
+      params: { category },
+    })),
     fallback: true,
   }
 }
@@ -45,7 +47,7 @@ export const getStaticProps: GetStaticProps<PageProps, PageParams> = async ({
   }
 }
 
-export const TechPage: NextPage<PageProps> = ({ articles, category }) => {
+export const TechPage: NextPage<PageProps> = ({ articles = [], category }) => {
   const icon =
     category === 'tech'
       ? faCode
