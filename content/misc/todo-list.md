@@ -12,5 +12,5 @@ summary: 'A little roadmap of what I need to add to my blog'
 4. Add blog preview images
 5. Reduce code duplication across blog pages
 6. Make a nice blogpost REST API
-7. Better (faster) search functionality
+7. Better (faster) search functionality **DONE** -- load all into frontend at build time, will need to be smarter when there's more blog posts but for now this will be fine
 8. 3 related blog posts below post

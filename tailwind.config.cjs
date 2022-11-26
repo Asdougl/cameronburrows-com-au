@@ -33,6 +33,9 @@ module.exports = {
           2: '#989daa',
           3: '#737992',
         },
+        tech: colors.blue[500],
+        travel: colors.green[500],
+        misc: colors.gray[400],
       },
     },
     fontFamily: {

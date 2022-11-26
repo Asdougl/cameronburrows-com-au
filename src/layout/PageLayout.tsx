@@ -46,7 +46,7 @@ export const PageLayout: FC<PropsWithChildren<{ className?: string }>> = ({
   className,
 }) => {
   return (
-    <div className="grid min-h-screen grid-rows-[80px_1fr_120px] bg-background">
+    <div className="grid min-h-screen grid-rows-[80px_1fr_180px] bg-background">
       <header className="z-20 border-b-2 border-tertiary-3">
         <div className="container mx-auto flex h-full w-full items-center justify-between gap-4">
           <Link href="/">
@@ -67,19 +67,19 @@ export const PageLayout: FC<PropsWithChildren<{ className?: string }>> = ({
             </a>
           </Link>
           <nav className="hidden gap-4 lg:flex">
-            <NavLink href="/tech">
+            <NavLink href="/blog/tech">
               <FontAwesomeIcon icon={faCode} size="sm" />
               <div>Tech</div>
             </NavLink>
-            <NavLink href="/travel">
+            <NavLink href="/blog/travel">
               <FontAwesomeIcon icon={faPlaneDeparture} size="sm" />
               <div>Travel</div>
             </NavLink>
-            <NavLink href="/misc">
+            <NavLink href="/blog/misc">
               <FontAwesomeIcon icon={faBoxArchive} size="sm" />
               <div>Misc</div>
             </NavLink>
-            <NavLink href="/search">
+            <NavLink href="/blog/search">
               <FontAwesomeIcon icon={faSearch} size="sm" />
               <div>Search</div>
             </NavLink>
@@ -111,13 +111,13 @@ export const PageLayout: FC<PropsWithChildren<{ className?: string }>> = ({
             </Menu.Button>
             <Menu.Items className="absolute right-0 top-full w-screen bg-background shadow-lg">
               <Menu.Item>
-                <NavLink href="/tech">
+                <NavLink href="/blog/tech">
                   <FontAwesomeIcon fixedWidth icon={faCode} size="sm" />
                   <div>Tech</div>
                 </NavLink>
               </Menu.Item>
               <Menu.Item>
-                <NavLink href="/travel">
+                <NavLink href="/blog/travel">
                   <FontAwesomeIcon
                     fixedWidth
                     icon={faPlaneDeparture}
@@ -127,13 +127,13 @@ export const PageLayout: FC<PropsWithChildren<{ className?: string }>> = ({
                 </NavLink>
               </Menu.Item>
               <Menu.Item>
-                <NavLink href="/misc">
+                <NavLink href="/blog/misc">
                   <FontAwesomeIcon fixedWidth icon={faBoxArchive} size="sm" />
                   <div>Misc</div>
                 </NavLink>
               </Menu.Item>
               <Menu.Item>
-                <NavLink href="/search">
+                <NavLink href="/blog/search">
                   <FontAwesomeIcon fixedWidth icon={faSearch} size="sm" />
                   <div>Search</div>
                 </NavLink>
@@ -143,7 +143,7 @@ export const PageLayout: FC<PropsWithChildren<{ className?: string }>> = ({
         </div>
       </header>
       <main className={className}>{children}</main>
-      <footer className="container mx-auto flex h-full flex-col items-center justify-between gap-4 pb-16 font-display text-lg text-tertiary-2 lg:flex-row">
+      <footer className="container mx-auto flex h-full flex-col items-center justify-between gap-4 py-10 font-display text-lg text-tertiary-2 lg:flex-row">
         <div className="flex items-center gap-4 lg:flex-col">
           <div className="font-medium">Cameron Burrows</div>
           <div className="flex gap-4">

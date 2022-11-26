@@ -21,7 +21,12 @@ export const Markdown = ({ children }: MarkdownProps) => {
         <SyntaxHighlighter
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
-          style={style}
+          style={{
+            ...style,
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            maxWidth: '100vw',
+          }}
           language={match[1]}
           PreTag="div"
           wrapLines
@@ -41,7 +46,7 @@ export const Markdown = ({ children }: MarkdownProps) => {
   }
   return (
     <ReactMarkdown
-      className="prose prose-invert mx-auto text-justify lg:prose-xl"
+      className="prose prose-invert mx-auto max-w-prose text-justify prose-pre:whitespace-pre-wrap lg:prose-xl"
       components={MarkdownComponents}
       remarkPlugins={[remarkGfm]}
     >

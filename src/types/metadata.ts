@@ -9,5 +9,6 @@ export const Metadata = z.object({
   tags: z.string().array().default([]),
   summary: z.string(),
   packages: z.string().array().optional(),
+  category: Category.default('misc'),
 })
 export type Metadata = z.infer<typeof Metadata>
