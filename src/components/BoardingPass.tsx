@@ -1,43 +1,21 @@
-import { faReact } from '@fortawesome/free-brands-svg-icons'
-import { faBarcode, faPlane } from '@fortawesome/pro-regular-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import classNames from 'classnames'
+'use client'
+
 import { useEffect, useState } from 'react'
+import {
+  ArrowSmallRightIcon,
+  Bars4Icon,
+  CodeBracketSquareIcon,
+} from '@heroicons/react/24/outline'
+import { twsx } from '../util/tw'
+import { AIRPORTS } from '../util/constants'
 
-const AIRPORTS = [
-  // europe
-  'LHR',
-  'GLA',
-  'LGW',
-  'CDG',
-  'AMS',
-  'FRA',
-  'FCO',
-  'BUD',
-  'HEL',
-  // north america
-  'LAX',
-  'JFK',
-  'HNL',
-  'KOA',
-  'YYZ',
-  // asia
-  'DIA',
-  'DXB',
-  'SGN',
-  'HAN',
-  'REP',
-  'VDH',
-  'HKG',
-  'SIN',
-  // oceania
-  'SUV',
-  'VLI',
-  'AKL',
-  'BNE',
-]
-
-export const BoardingPass = ({ className }: { className?: string }) => {
+export const BoardingPass = ({
+  className,
+  airports = AIRPORTS,
+}: {
+  className?: string
+  airports?: string[]
+}) => {
   const [airportIndex, setAirportIndex] = useState(0)
   const [transitioning, setTransitioning] = useState(false)
 
@@ -46,9 +24,9 @@ export const BoardingPass = ({ className }: { className?: string }) => {
     const interval = setInterval(() => {
       setTransitioning(true)
       timeout = setTimeout(() => {
-        const nextIndex =
-          airportIndex + 1 > AIRPORTS.length - 1 ? 0 : airportIndex + 1
-        setAirportIndex(nextIndex)
+        setAirportIndex((curr) =>
+          curr + 1 > airports.length - 1 ? 0 : curr + 1
+        )
         setTransitioning(false)
       }, 150)
     }, 1000)
@@ -57,18 +35,21 @@ export const BoardingPass = ({ className }: { className?: string }) => {
       clearInterval(interval)
       if (timeout) clearTimeout(timeout)
     }
-  })
+  }, [airports])
 
   return (
     <div
-      className={classNames(
+      className={twsx(
         'grid grid-cols-3 grid-rows-[32px_1fr] lg:rotate-0',
         className
       )}
     >
       {/* top left */}
       <div className="col-span-2 flex items-center gap-1 rounded-t-lg bg-primary-1 px-2 font-display font-bold text-white">
-        <FontAwesomeIcon icon={faReact} /> Frontend Airlines
+        <div className="px-2">
+          <CodeBracketSquareIcon height={16} width={16} />
+        </div>
+        <div>Frontend Airlines</div>
       </div>
       {/* top right */}
       <div className="relative col-span-1 flex items-center rounded-t-lg bg-primary-1 px-2 font-display text-xs font-bold text-white">
@@ -78,25 +59,26 @@ export const BoardingPass = ({ className }: { className?: string }) => {
         </div>
       </div>
       {/* bottom left */}
-      <div className="col-span-2 flex rounded-b-lg bg-tertiary-1 px-2 py-2 pr-8 text-background">
-        <div className="flex flex-col gap-1 pr-2">
-          <FontAwesomeIcon icon={faBarcode} size="2x" className="rotate-90" />
-          <FontAwesomeIcon icon={faBarcode} size="2x" className="rotate-90" />
+      <div className="col-span-2 flex rounded-b-lg bg-tertiary-1 px-2 py-1 pr-8 text-background">
+        <div className="flex flex-col pr-2">
+          <Bars4Icon height={32} className="mb-[-8px]" />
+          <Bars4Icon height={32} className="mb-[-8px]" />
+          <Bars4Icon height={32} />
         </div>
-        <div className="flex flex-col font-medium">
+        <div className="flex flex-col font-medium py-1">
           <div className="text-sm lg:text-lg">BURROWS / CAMERON</div>
           <div className="flex items-center gap-2">
             <span className="h-6 w-9 text-center">SYD</span>
-            <FontAwesomeIcon icon={faPlane} />
+            <ArrowSmallRightIcon height={16} width={16} />
             <span className="h-6 w-9 overflow-hidden">
               <div
-                className={classNames(
+                className={twsx(
                   'flex flex-col justify-center',
                   transitioning ? 'transition-transform' : '-translate-y-1/2'
                 )}
               >
-                <div>{AIRPORTS[airportIndex + 1]}</div>
-                <div>{AIRPORTS[airportIndex]}</div>
+                <div>{airports[airportIndex + 1]}</div>
+                <div>{airports[airportIndex]}</div>
               </div>
             </span>
           </div>
@@ -115,20 +97,21 @@ export const BoardingPass = ({ className }: { className?: string }) => {
             <div>to</div>
             <div className="h-4 w-7 overflow-hidden">
               <div
-                className={classNames(
+                className={twsx(
                   'flex w-full flex-col justify-center',
                   transitioning ? 'transition-transform' : '-translate-y-1/2'
                 )}
               >
-                <div>{AIRPORTS[airportIndex + 1]}</div>
-                <div>{AIRPORTS[airportIndex]}</div>
+                <div>{airports[airportIndex + 1]}</div>
+                <div>{airports[airportIndex]}</div>
               </div>
             </div>
           </div>
           <div className="flex gap-px pr-2">
-            <FontAwesomeIcon icon={faBarcode} size="lg" />
-            <FontAwesomeIcon icon={faBarcode} size="lg" />
-            <FontAwesomeIcon icon={faBarcode} size="lg" />
+            <Bars4Icon width={20} className="rotate-90" />
+            <Bars4Icon width={20} className="rotate-90 ml-[-6px]" />
+            <Bars4Icon width={20} className="rotate-90 ml-[-6px]" />
+            <Bars4Icon width={20} className="rotate-90 ml-[-6px]" />
           </div>
         </div>
         <div className="absolute top-0 left-0 h-full w-full pb-1">

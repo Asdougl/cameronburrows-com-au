@@ -1,9 +1,11 @@
 {
-  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "project": "./tsconfig.json"
   },
-  "plugins": ["@typescript-eslint"],
-  "extends": ["next/core-web-vitals", "@asdougl"],
-  "ignorePatterns": ["*.cjs"]
+  "extends": ["@asdougl"],
+  "ignorePatterns": ["*.cjs"],
+  "rules": {
+    "import/namespace": 0,
+    "react-refresh/only-export-components": 0
+  }
 }

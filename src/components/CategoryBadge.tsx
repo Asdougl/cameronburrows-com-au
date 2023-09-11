@@ -1,15 +1,16 @@
 import {
-  faBooks,
-  faBoxArchive,
-  faCode,
-  faPlaneDeparture,
-} from '@fortawesome/pro-regular-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+  ArchiveBoxIcon,
+  CodeBracketIcon,
+  GlobeEuropeAfricaIcon,
+  InboxStackIcon,
+} from '@heroicons/react/24/outline'
 import type { VariantProps } from 'class-variance-authority'
 import { cva } from 'class-variance-authority'
 
 const badge = cva(
-  ['rounded-full px-4 py-1 font-semibold uppercase tracking-widest border-2'],
+  [
+    'rounded-full px-4 py-1 font-semibold uppercase tracking-widest border-2 flex items-center',
+  ],
   {
     variants: {
       category: {
@@ -32,25 +33,25 @@ const badge = cva(
 type CategoryBadgeProps = VariantProps<typeof badge> & { className?: string }
 
 export const CategoryBadge = (props: CategoryBadgeProps) => {
-  let icon = faBoxArchive
+  let icon
 
   switch (props.category) {
     case 'travel':
-      icon = faPlaneDeparture
+      icon = <GlobeEuropeAfricaIcon height={14} className="mr-2" />
       break
     case 'tech':
-      icon = faCode
+      icon = <CodeBracketIcon height={14} className="mr-2" />
       break
     case 'all':
-      icon = faBooks
+      icon = <InboxStackIcon height={14} className="mr-2" />
       break
     default:
-      icon = faBoxArchive
+      icon = <ArchiveBoxIcon height={14} className="mr-2" />
       break
   }
   return (
     <div className={badge({ ...props, className: props.className })}>
-      <FontAwesomeIcon icon={icon} className="mr-2" />
+      {icon}
       {props.category}
     </div>
   )
